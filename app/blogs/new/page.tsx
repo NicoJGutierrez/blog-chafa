@@ -15,7 +15,7 @@ const NewBlog = () => {
         <label>Content<input type="text" name="content" required /> </label>
         </div>
         <div>
-          <label>URL<input type="url" name="url" required /></label>
+          <label>URL<input type="url" name="url"/></label>
         </div>
         <button type="submit">Create</button>
       </form>
