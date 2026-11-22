@@ -10,14 +10,14 @@ export const createBlog = async (formData: FormData) => {
   const author = formData.get("author") as string
   const content = formData.get("content") as string
   const url = formData.get("url") as string
-  addBlog(title, author, content, url)
+  await addBlog(title, author, content, url)
   revalidatePath("/blogs")
   redirect("/blogs")
 }
 
 export const addBlogLike = async (formData: FormData) => {
   const id = Number(formData.get("id"))
-  addLike(id)
+  await addLike(id)
   revalidatePath(`/blogs/${id}`)
   revalidatePath("/blogs")
   

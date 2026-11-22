@@ -28,12 +28,12 @@ const AllBlogsSearch = async({
 }) => {
   const searchParamsValue = (await searchParams).searchBlogTitle
   const allBlogs = getblogs()
-  const blogs = searchParamsValue ? allBlogs.filter((blog) =>
+  const blogs = searchParamsValue ? (await allBlogs).filter((blog) =>
         blog.title.toLowerCase().includes(searchParamsValue.toLowerCase())
       ) : allBlogs
   return (
     <div>
-      <BlogList blogs={blogs} />
+      <BlogList blogs={await blogs} />
     </div>
   )
 }
