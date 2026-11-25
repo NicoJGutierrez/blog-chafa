@@ -1,6 +1,14 @@
 import { getblogs } from "../services/blogs"
 import { Suspense } from "react"
+import { getUserById } from "../services/users"
 import BlogList from "./BlogList"
+
+type BlogParaCliente = {
+  id: number
+  title: string
+  autor: string
+  likes: number
+}
 
 const Blogs = ({ searchParams }: { searchParams: Promise<{ searchBlogTitle: string }> }) => {
   return (
@@ -21,19 +29,32 @@ const Blogs = ({ searchParams }: { searchParams: Promise<{ searchBlogTitle: stri
   )
 }
 
-const AllBlogsSearch = async({
+const AllBlogsSearch = async ({
   searchParams,
 }: {
-  searchParams: Promise<{ searchBlogTitle: string }>
+  searchParams: Promise<{ searchBlogTitle?: string }>
 }) => {
-  const searchParamsValue = (await searchParams).searchBlogTitle
-  const allBlogs = getblogs()
-  const blogs = searchParamsValue ? (await allBlogs).filter((blog) =>
-        blog.title.toLowerCase().includes(searchParamsValue.toLowerCase())
-      ) : allBlogs
+  const { searchBlogTitle } = await searchParams
+  const allBlogs = (await getblogs()) as Blog[]
+
+  const filteredBlogs = searchBlogTitle
+    ? allBlogs.filter((blog) =>
+        blog.title.toLowerCase().includes(searchBlogTitle.toLowerCase())
+      )
+    : allBlogs
+
+  const blogs: BlogParaCliente[] = filteredBlogs.map(
+    ({ id, title, likes, user }) => ({
+      id,
+      title,
+      likes,
+      autor: user.username,
+    })
+  )
+
   return (
     <div>
-      <BlogList blogs={await blogs} />
+      <BlogList blogs={blogs} />
     </div>
   )
 }

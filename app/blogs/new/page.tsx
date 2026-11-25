@@ -6,16 +6,16 @@ const NewBlog = () => {
       <h2>Create a new blog</h2>
       <form action={createBlog}>
         <div>
-        <label> Title <input type="text" name="title" required /></label>
-        </div>
-        <div>
-        <label> Author <input type="text" name="author" required /></label>
+        <label>Título: <input type="text" name="title" required /></label>
         </div>
         <div> 
-        <label>Content<input type="text" name="content" required /> </label>
+        <label>Contenido:</label>
         </div>
         <div>
-          <label>URL<input type="url" name="url"/></label>
+        <textarea name="content" required rows={5} />
+        </div>
+        <div>
+          <label>URL (opcional): <input type="url" name="url"/></label>
         </div>
         <button type="submit">Create</button>
       </form>

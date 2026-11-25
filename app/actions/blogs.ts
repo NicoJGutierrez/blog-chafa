@@ -7,10 +7,9 @@ import { addLike } from "../services/blogs"
 
 export const createBlog = async (formData: FormData) => {
   const title = formData.get("title") as string
-  const author = formData.get("author") as string
   const content = formData.get("content") as string
   const url = formData.get("url") as string
-  await addBlog(title, author, content, url)
+  await addBlog(title, content, url)
   revalidatePath("/blogs")
   redirect("/blogs")
 }

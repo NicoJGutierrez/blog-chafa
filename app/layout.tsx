@@ -7,7 +7,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <ul>
             <Link href="/">Inicio</Link> {" | "}
             <Link href="/blogs">Blogs</Link> {" | "}
-            <Link href="/blogs/new">Nuevo Blog</Link>
+            <Link href="/blogs/new">Nuevo Blog</Link> {" | "}
+            <Link href="/users">Usuarios</Link>
           </ul>
         </nav>
         {children}

@@ -29,7 +29,7 @@ const BlogContent = async ({ params }: { params: Promise<{ id: string }> }) => {
   return (
     <div>
       <h2>{ blog.title}</h2>
-      <p>by { blog.author}</p>
+      <p>Autor: { blog.user.username}</p>
       <p>{ blog.content}</p>
       <form action={addBlogLike}>
         <input type="hidden" name="id" value={ blog.id} />
