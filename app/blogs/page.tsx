@@ -1,6 +1,5 @@
 import { getblogs } from "../services/blogs"
 import { Suspense } from "react"
-import { getUserById } from "../services/users"
 import BlogList from "./BlogList"
 
 type BlogParaCliente = {
@@ -35,7 +34,7 @@ const AllBlogsSearch = async ({
   searchParams: Promise<{ searchBlogTitle?: string }>
 }) => {
   const { searchBlogTitle } = await searchParams
-  const allBlogs = (await getblogs()) as Blog[]
+  const allBlogs = (await getblogs())
 
   const filteredBlogs = searchBlogTitle
     ? allBlogs.filter((blog) =>
